@@ -9,7 +9,8 @@ class SvetnewparsSpider(scrapy.Spider):
         svetilniks = response.css('div._Ud0k')
         for svetilnik in svetilniks:
             yield {
-            'name' : svetilniks.css('div.lsooF span::text').get(),
-            'price' : svetilniks.css('div.pY3d2 span::text').get(),
-            'url' : svetilniks.css('a').attrib['href']
+            'name': svetilnik.css('div.lsooF span::text').get(),
+            'price': svetilnik.css('div.pY3d2 span::text').get(),
+            'url': svetilnik.css('a::attr(href)').get()
+            # 'url' : svetilniks.css('a').attrib['href'] изменено по совету сети
             }
